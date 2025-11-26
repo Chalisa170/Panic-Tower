@@ -1,0 +1,162 @@
+wait(1)
+
+
+local Time = game.ReplicatedStorage.Information.Time
+local Players = game:GetService("Players")
+local Rate = game.ReplicatedStorage.Information.Rate
+
+function resetgame()
+	Time.Value = 420
+	Rate.Value = 1
+	local stages1 = game.Workspace.Stages:GetChildren()
+	teleportAllPlayers(game.Workspace.Lobby.SpawnLocation)
+	for i=1,#stages1 do
+		stages1[i]:Destroy()
+	end
+	Time.Value = 420
+	Rate.Value = 1
+	wait(0.1)
+	generate("One")
+	wait(0.1)
+	generate("Two")
+	wait(0.1)
+	generate("Three")
+	wait(0.1)
+	generate("Four")
+	wait(0.1)
+	generate("Five")
+	wait(0.1)
+	generate("Six")
+	wait(0.1)
+	game.ReplicatedStorage.BoostInformation.Fog.Value = false
+	game.ReplicatedStorage.BoostInformation.Checkpoints.Value = false
+	game.ReplicatedStorage.BoostInformation.ExtraTime.Value = false
+	game.ReplicatedStorage.BoostInformation.Invincibility.Value = false
+	game.ReplicatedStorage.BoostInformation.HighSpeed.Value = false
+	game.ReplicatedStorage.BoostInformation.LowGravity.Value = false
+	game.ReplicatedStorage.ResetGame:FireAllClients()
+	game.ReplicatedStorage.Hiii:Fire()
+end
+
+function teleportAllPlayers(part)
+	for _,v in pairs(Players:GetChildren()) do
+		local character = v.Character
+		if character then
+			local humanoidRootPart = character.HumanoidRootPart
+			if humanoidRootPart then 
+				humanoidRootPart.CFrame = part.CFrame 
+			end
+		end
+	end
+end
+
+function generate(val)
+	local stages = game.ServerStorage.Stages
+	local cf = workspace.Position[val].CFrame
+	local children = stages:GetChildren()
+	local num = math.random(1,#children)
+	local clone = stages[num]:Clone()
+	local numtext
+	if val == "One" then
+		numtext = "1"
+	end
+	if val == "Two" then
+		numtext = "2"
+	end
+	if val == "Three" then
+		numtext = "3"
+	end
+	if val == "Four" then
+		numtext = "4"
+	end
+	if val == "Five" then
+		numtext = "5"
+	end
+	if val == "Six" then
+		numtext = "6"
+	end
+	clone.Name = numtext
+	clone.Parent = workspace.Stages
+	clone:SetPrimaryPartCFrame(cf)
+	print("Stages loaded successfully.")
+	game.ReplicatedStorage.ResetGame:FireAllClients()
+	game.ReplicatedStorage.Hiii:Fire()
+end
+
+wait(0.1)
+generate("One")
+wait(0.1)
+generate("Two")
+wait(0.1)
+generate("Three")
+wait(0.1)
+generate("Four")
+wait(0.1)
+generate("Five")
+wait(0.1)
+generate("Six")
+wait(0.1)
+
+wait(1)
+
+game.ReplicatedStorage.BindEvent.Event:Connect(function()
+	resetgame()
+	game.ReplicatedStorage.Hiii:Fire()
+end)
+
+while true do
+	wait()
+	if Time.Value == 0 then
+		local stages1 = game.Workspace.Stages:GetChildren()
+		teleportAllPlayers(game.Workspace.Lobby.SpawnLocation)
+		for i=1,#stages1 do
+			stages1[i]:Destroy()
+		end
+		Time.Value = 420
+		Rate.Value = 1
+		wait(0.1)
+		generate("One")
+		wait(0.1)
+		generate("Two")
+		wait(0.1)
+		generate("Three")
+		wait(0.1)
+		generate("Four")
+		wait(0.1)
+		generate("Five")
+		wait(0.1)
+		generate("Six")
+		wait(0.1)
+		game.ReplicatedStorage.ResetGame:FireAllClients()
+		game.ReplicatedStorage.Hiii:Fire()
+		wait(1)
+	    end
+	
+	    if Time.Value < 0 or Time.Value > 530 then
+		Time.Value = 420
+		Rate.Value = 1
+		local stages3 = game.Workspace.Stages:GetChildren()
+		teleportAllPlayers(game.Workspace.Lobby.SpawnLocation)
+		for n=1,#stages3 do
+			stages3[n]:Destroy()
+		end
+		Time.Value = 420
+		Rate.Value = 0
+		wait(0.1)
+		generate("One")
+		wait(0.1)
+		generate("Two")
+		wait(0.1)
+		generate("Three")
+		wait(0.1)
+		generate("Four")
+		wait(0.1)
+		generate("Five")
+		wait(0.1)
+		generate("Six")
+		wait(0.1)
+		game.ReplicatedStorage.ResetGame:FireAllClients()
+		game.ReplicatedStorage.Hiii:Fire()
+	end
+	
+end
