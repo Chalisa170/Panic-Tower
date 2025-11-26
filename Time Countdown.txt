@@ -1,0 +1,28 @@
+local Time = game.ReplicatedStorage.Information.Time
+local Rate = game.ReplicatedStorage.Information.Rate
+
+function Format(Int)
+	return string.format("%02i", Int)
+end
+
+function convertToHMS(Seconds)
+	local Minutes = (Seconds - Seconds%60)/60
+	Seconds = Seconds - Minutes*60
+	local Hours = (Minutes - Minutes%60)/60
+	Minutes = Minutes - Hours*60
+	return Format(Minutes)..":"..Format(Seconds)
+end
+
+while true do
+	wait()
+	if Rate.Value == 1 then
+	script.Parent.Parent.Speed.Visible = false	
+	script.Parent.Font = Enum.Font.Bangers
+	script.Parent.Text = convertToHMS(Time.Value)
+	elseif Rate.Value >= 2 then
+	script.Parent.Parent.Speed.Text = "X"..Rate.Value
+	script.Parent.Font = Enum.Font.Bangers
+	script.Parent.Text = convertToHMS(Time.Value)
+	script.Parent.Parent.Speed.Visible = true
+	end
+end

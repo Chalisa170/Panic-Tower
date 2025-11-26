@@ -1,0 +1,18 @@
+local time = game.ReplicatedStorage.Information.Time
+
+
+local timeRate = game.ReplicatedStorage.Information.Rate
+
+local waitTime = 1
+
+time.Value = 420
+
+while true do
+	wait(waitTime)
+	if time.Value > 0 then
+		time.Value = time.Value - 1
+	elseif time.Value > 0 and timeRate.Value >= 256 then
+		time.Value = time.Value - 4
+	end
+	waitTime = 1/(timeRate.Value)
+end

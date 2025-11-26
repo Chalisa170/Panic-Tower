@@ -1,0 +1,10 @@
+local Time = game.ReplicatedStorage.Information.Time
+
+while true do
+wait()
+if Time.Value <= 10 then
+	script.Parent.TextColor3 = Color3.new(1, 0, 0)
+else
+	script.Parent.TextColor3 = Color3.fromRGB(255, 255, 255)
+	end
+ end
