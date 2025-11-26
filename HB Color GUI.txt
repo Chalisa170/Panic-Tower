@@ -1,0 +1,24 @@
+game.ReplicatedStorage.ResetGame.OnClientEvent:Connect(function()
+	for i = 1,5 do
+	wait(1)
+	for v5, v6 in pairs(script.Parent.Sections:GetChildren()) do
+		for v3, v4 in pairs(workspace.Stages:GetChildren()) do
+			if v4.Name == v6.Name then
+				v6.BackgroundColor3 = v4.ObbyColor.Value
+			end
+		end
+		end
+	end
+end)
+
+wait(5)
+for i = 1,5 do
+wait(1)
+for v1, v2 in pairs(script.Parent.Sections:GetChildren()) do
+	for v3, v4 in pairs(workspace.Stages:GetChildren()) do
+		if v4.Name == v2.Name then
+			v2.BackgroundColor3 = v4.ObbyColor.Value
+		end
+	end
+	end
+end

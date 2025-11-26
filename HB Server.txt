@@ -1,0 +1,14 @@
+local RepStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+
+local PlayerJoin = RepStorage.PlayerJoin
+local PlayerLeft = RepStorage.PlayerLeft
+
+
+Players.PlayerAdded:Connect(function(Plr)
+	PlayerJoin:FireAllClients(Plr)
+end)
+
+Players.PlayerRemoving:Connect(function(Plr)
+	PlayerLeft:FireAllClients(Plr)	
+end)

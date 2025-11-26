@@ -1,0 +1,47 @@
+local RepStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+
+local PlayerJoinEvent = RepStorage:WaitForChild("PlayerJoin")
+local PlayerLeftEvent = RepStorage:WaitForChild("PlayerLeft")
+
+local Sample = script.Line
+local Bar = script.Parent
+local PlayersFolder = Bar:WaitForChild("Players")
+
+local function CreateFrame(Plr)
+	local PlayerHeight = Sample:Clone()
+	PlayerHeight.Name = Plr.Name
+	PlayerHeight.Visible = true
+	local ImageLabel = PlayerHeight:WaitForChild("ImageLabel") 
+	ImageLabel.Image= Players:GetUserThumbnailAsync(Plr.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420)
+
+	PlayerHeight.LocalScript.Disabled = false
+	PlayerHeight.Parent = PlayersFolder
+end
+
+for i,v in pairs(Players:GetPlayers()) do
+	CreateFrame(v)
+end
+
+local function PlayerJoined (Plr)
+	if PlayersFolder:FindFirstChild(Plr.Name) then return end
+	CreateFrame(Plr)
+end
+
+
+local function PlayerLeft (Plr)
+	local Frame = PlayersFolder:FindFirstChild(Plr.Name)
+	if not Frame then 
+		return 
+	else
+		Frame:Destroy()
+	end
+end
+
+PlayerJoinEvent.OnClientEvent:Connect(function(Plr)
+	PlayerJoined(Plr)
+end)
+
+PlayerLeftEvent.OnClientEvent:Connect(function(Plr)
+	PlayerLeft(Plr)
+end)
