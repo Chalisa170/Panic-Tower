@@ -1,0 +1,50 @@
+local blacklist = {};
+
+local part = script.Parent
+
+local players = game:GetService("Players");
+
+local Rate = game.ReplicatedStorage.Information.Rate
+
+game.ReplicatedStorage.Hiii.Event:Connect(function()
+	for index in pairs(blacklist) do
+		blacklist = {}
+	end
+	blacklist = {}
+end)
+
+function foundInList(player)
+	for _,target in ipairs(blacklist) do
+		if target == player then
+			return true;
+		end
+	end
+	return false;
+end
+
+part.Touched:connect(function(hit)
+
+	local player = players:GetPlayerFromCharacter(hit.Parent);
+
+	if player then
+
+		if not foundInList(player) then
+
+			table.insert(blacklist,player); 
+			
+			if Rate.Value > 1 then
+				Rate.Value = Rate.Value * 2
+			elseif Rate.Value == 1 then
+				Rate.Value = Rate.Value + 1
+			end   
+
+			game.ReplicatedStorage.Finish:FireAllClients({
+				Text = player.Name.." made it to the end!"
+			})
+
+			wait()
+		end
+
+	end
+
+end)
