@@ -28,12 +28,6 @@ function resetgame()
 	wait(0.1)
 	generate("Six")
 	wait(0.1)
-	game.ReplicatedStorage.BoostInformation.Fog.Value = false
-	game.ReplicatedStorage.BoostInformation.Checkpoints.Value = false
-	game.ReplicatedStorage.BoostInformation.ExtraTime.Value = false
-	game.ReplicatedStorage.BoostInformation.Invincibility.Value = false
-	game.ReplicatedStorage.BoostInformation.HighSpeed.Value = false
-	game.ReplicatedStorage.BoostInformation.LowGravity.Value = false
 	game.ReplicatedStorage.ResetGame:FireAllClients()
 	game.ReplicatedStorage.Hiii:Fire()
 end
@@ -159,4 +153,5 @@ while true do
 		game.ReplicatedStorage.Hiii:Fire()
 	end
 	
+
 end
