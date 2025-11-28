@@ -2,4 +2,4 @@
 
 [Video Demo](https://youtu.be/kd_brRzvp54)
 
-[Link Game](https://www.roblox.com/games/74853794758939/Panic-Tower-V2)
+[Link Game](https://www.roblox.com/games/74853794758939/Panic-Tower-V2) ขณะนี้ยังปิดเกมไว้อยู่ เพราะตัวเกมมีบัคจำนวนมากและไม่สามารถเปิดให้พร้อมเล่น
